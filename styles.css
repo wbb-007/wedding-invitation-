@@ -1372,6 +1372,88 @@ body.blessing-locked .sprite-parade {
   gap: 10px;
 }
 
+.album-screen {
+  justify-content: flex-start;
+  padding-top: max(28px, env(safe-area-inset-top));
+  padding-bottom: max(28px, env(safe-area-inset-bottom));
+  background:
+    radial-gradient(circle at 12% 14%, rgba(255, 255, 255, 0.7), transparent 36%),
+    linear-gradient(180deg, #f7f2e9 0%, #eef4ee 100%);
+}
+
+.album-shell {
+  width: 100%;
+}
+
+.album-heading {
+  margin-bottom: 14px;
+  padding: 14px 16px 16px;
+  color: #4b3528;
+  background: rgba(255, 255, 255, 0.72);
+  border: 3px solid rgba(103, 64, 38, 0.18);
+  border-radius: 8px;
+  box-shadow: 0 4px 0 rgba(79, 47, 34, 0.18);
+}
+
+.album-heading h2,
+.album-heading p {
+  margin: 0;
+}
+
+.album-heading h2 {
+  margin: 4px 0 6px;
+  color: #8b3e25;
+  font-size: 26px;
+  line-height: 1.1;
+}
+
+.album-heading > p:last-child {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.album-shot {
+  margin: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 4px solid #6b3e22;
+  border-radius: 8px;
+  box-shadow: 0 5px 0 #2f1e17, inset 2px 2px 0 rgba(255, 255, 255, 0.35);
+}
+
+.album-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.album-shot--hero {
+  grid-row: span 3;
+  min-height: 544px;
+}
+
+.album-shot--tall {
+  min-height: 176px;
+}
+
+.album-shot--wide {
+  min-height: 176px;
+}
+
+.album-shot--banner {
+  grid-column: 1 / -1;
+  min-height: 180px;
+}
+
 .ending-screen {
   min-height: auto;
   padding-top: 8px;
@@ -1392,6 +1474,25 @@ body.blessing-locked .sprite-parade {
   display: block;
   width: 100%;
   height: auto;
+}
+
+@media (max-width: 420px) {
+  .album-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .album-shot--hero,
+  .album-shot--tall,
+  .album-shot--wide,
+  .album-shot--banner {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 210px;
+  }
+
+  .album-shot--banner {
+    min-height: 150px;
+  }
 }
 
 .food-screen {
