@@ -104,6 +104,10 @@ if ('requestIdleCallback' in window) {
   window.setTimeout(warmup, 1200);
 }
 
+const rsvpForm = document.querySelector('#rsvp-form');
+const rsvpSubmit = rsvpForm?.querySelector('button[type="submit"]');
+const rsvpSubmitLabel = rsvpSubmit?.textContent || '提交回执';
+
 document.querySelectorAll('[data-copy]').forEach((button) => {
   button.addEventListener('click', async () => {
     const text = button.dataset.copy;
@@ -116,6 +120,41 @@ document.querySelectorAll('[data-copy]').forEach((button) => {
     }
   });
 });
+
+if (rsvpForm) {
+  rsvpForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (rsvpSubmit) {
+      rsvpSubmit.disabled = true;
+      rsvpSubmit.textContent = '提交中...';
+    }
+
+    try {
+      const payload = Object.fromEntries(new FormData(rsvpForm).entries());
+      const response = await fetch('./api/rsvp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || !data.ok) {
+        throw new Error(data.error || '提交失败');
+      }
+
+      rsvpForm.reset();
+      showToast('回执已提交');
+    } catch {
+      showToast('提交失败，请稍后再试');
+    } finally {
+      if (rsvpSubmit) {
+        rsvpSubmit.disabled = false;
+        rsvpSubmit.textContent = rsvpSubmitLabel;
+      }
+    }
+  });
+}
 
 musicToggle.addEventListener('click', async () => {
   if (!bgm.paused) {

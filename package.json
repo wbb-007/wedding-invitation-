@@ -1,0 +1,11 @@
+{
+  "name": "wedding-invitation",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "mail-api": "node mail-api.js"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.16"
+  }
+}
