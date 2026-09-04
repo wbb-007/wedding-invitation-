@@ -1,4 +1,4 @@
-// 打开页面时始终停留在第一屏，避免浏览器恢复滚动位置或 hash 跳转
+﻿// 鎵撳紑椤甸潰鏃跺缁堝仠鐣欏湪绗竴灞忥紝閬垮厤娴忚鍣ㄦ仮澶嶆粴鍔ㄤ綅缃垨 hash 璺宠浆
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
@@ -6,7 +6,7 @@ if ('scrollRestoration' in history) {
 function forceScrollTop() {
   if (!document.body.classList.contains('blessing-locked')) return;
 
-  // 临时关闭平滑滚动，确保复位是瞬时的，不会被 smooth 动画带偏
+  // 涓存椂鍏抽棴骞虫粦婊氬姩锛岀‘淇濆浣嶆槸鐬椂鐨勶紝涓嶄細琚?smooth 鍔ㄧ敾甯﹀亸
   const html = document.documentElement;
   const prev = html.style.scrollBehavior;
   html.style.scrollBehavior = 'auto';
@@ -20,7 +20,7 @@ window.addEventListener('pageshow', () => {
   if (window.location.hash) {
     history.replaceState(null, '', window.location.pathname + window.location.search);
   }
-  // 浏览器可能在 pageshow 之后才恢复滚动位置，用双重 rAF 覆盖
+  // 娴忚鍣ㄥ彲鑳藉湪 pageshow 涔嬪悗鎵嶆仮澶嶆粴鍔ㄤ綅缃紝鐢ㄥ弻閲?rAF 瑕嗙洊
   requestAnimationFrame(() => requestAnimationFrame(forceScrollTop));
 });
 
@@ -91,13 +91,13 @@ updateWeddingCountdown();
 window.setInterval(updateWeddingCountdown, 1000);
 
 const warmup = () => warmupImages([
-  './album-01.jpg',
+  './图1.jpg',
   './album-02.jpg',
   './album-03.jpg',
-  './album-04.jpg',
+  './图二.jpg',
+  './bus-pixel.png',
   './结尾.png',
 ]);
-
 if ('requestIdleCallback' in window) {
   requestIdleCallback(warmup, { timeout: 1200 });
 } else {
@@ -110,7 +110,7 @@ document.querySelectorAll('[data-copy]').forEach((button) => {
 
     try {
       await navigator.clipboard.writeText(text);
-      showToast('已复制地址');
+      showToast('宸插鍒跺湴鍧€');
     } catch {
       showToast(text);
     }
@@ -127,7 +127,7 @@ musicToggle.addEventListener('click', async () => {
     await bgm.play();
     hideMusicHeart();
   } catch {
-    showToast('请再次点击开启音乐');
+    showToast('请再点一次开启音乐');
   }
 });
 
@@ -143,7 +143,7 @@ musicHeart.addEventListener('click', async (event) => {
     window.setTimeout(hideMusicHeart, 720);
   } catch {
     musicHeart.classList.remove('is-activating');
-    showToast('请再次点击开启音乐');
+    showToast('请再点一次开启音乐');
   }
 });
 
@@ -168,7 +168,7 @@ function updateWeddingCountdown() {
 
   countdownTime.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   weddingCountdown.querySelector('.wedding-countdown__label').textContent = isToday ? '今天就是婚礼日' : '距离婚礼还有';
-  weddingCountdown.querySelector('.wedding-countdown__unit').textContent = isToday ? '时分秒' : '时分秒';
+  weddingCountdown.querySelector('.wedding-countdown__unit').textContent = '时分秒';
   weddingCountdown.classList.toggle('is-today', isToday);
 }
 
@@ -350,4 +350,3 @@ function showToast(message) {
   }, 1800);
 }
 
- document.querySelectorAll('[data-guest-count]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-guest-count]').forEach(x=>x.classList.remove('primary'));b.classList.add('primary');document.querySelector('#guest-count-result').textContent='已选择 '+b.dataset.guestCount+' 人赴宴';}));
