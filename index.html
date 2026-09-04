@@ -26,7 +26,7 @@
     history.scrollRestoration = 'manual';
     if (location.hash) history.replaceState(null, '', location.pathname + location.search);
   </script>
-  <link rel="stylesheet" href="./styles.css?t=1233" />
+  <link rel="stylesheet" href="./styles.css?t=1236" />
 </head>
 <body>
   <main class="phone-frame" aria-label="星露谷物语风格婚礼邀请函">
@@ -197,23 +197,20 @@
         <header class="album-heading">
           <p class="eyebrow">Wedding Album</p>
           <h2>我们的照片</h2>
-          <p>把这一程光、风和笑意都留住。</p>
+          <p class="album-note">把这一程光、风和笑意都留住。</p>
         </header>
         <div class="album-grid">
           <figure class="album-shot album-shot--hero">
-            <img src="./微信图片_20260904234157_205_51.jpg" alt="婚纱照，夕阳下的双人合影" loading="lazy" />
+            <img src="./album-01.jpg" alt="婚纱照，夕阳下的双人合影" loading="eager" fetchpriority="high" decoding="async" width="900" height="1350" />
           </figure>
           <figure class="album-shot album-shot--tall">
-            <img src="./微信图片_20260904234510_209_51.png" alt="婚纱照，近景双人合影" loading="lazy" />
+            <img src="./album-02.jpg" alt="婚纱照，近景双人合影" loading="lazy" decoding="async" width="800" height="1067" />
           </figure>
           <figure class="album-shot album-shot--wide">
-            <img src="./image copy.png" alt="婚纱照，站立合影" loading="lazy" />
+            <img src="./album-03.jpg" alt="婚纱照，站立合影" loading="lazy" decoding="async" width="800" height="1067" />
           </figure>
           <figure class="album-shot album-shot--wide">
-            <img src="./image copy 2.png" alt="婚纱照，牵手合影" loading="lazy" />
-          </figure>
-          <figure class="album-shot album-shot--banner">
-            <img src="./微信图片_20260904231511_6_2.png" alt="WELCOME TO OUR WEDDING 期待你的如约而至" loading="lazy" />
+            <img src="./album-04.jpg" alt="婚纱照，牵手合影" loading="lazy" decoding="async" width="900" height="675" />
           </figure>
         </div>
       </div>
@@ -271,12 +268,12 @@
 
     <section id="ending" class="screen ending-screen" aria-label="结尾宣传图">
       <div class="ending-banner">
-        <img src="./ending-banner.png" alt="WELCOME TO OUR WEDDING 期待你的如约而至" loading="lazy" />
+        <img src="./结尾.png" alt="WELCOME TO OUR WEDDING 期待你的如约而至" loading="lazy" decoding="async" width="592" height="321" />
       </div>
     </section></main>
 
   <div class="toast" role="status" aria-live="polite">已复制地址</div>
-  <script src="./script.js?t=1233"></script>
+  <script src="./script.js?t=1235"></script>
 </body>
 </html>
 

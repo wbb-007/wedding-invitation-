@@ -1377,22 +1377,25 @@ body.blessing-locked .sprite-parade {
   padding-top: max(28px, env(safe-area-inset-top));
   padding-bottom: max(28px, env(safe-area-inset-bottom));
   background:
-    radial-gradient(circle at 12% 14%, rgba(255, 255, 255, 0.7), transparent 36%),
-    linear-gradient(180deg, #f7f2e9 0%, #eef4ee 100%);
+    radial-gradient(circle at 14% 12%, rgba(255, 255, 255, 0.68), transparent 34%),
+    linear-gradient(180deg, #fbf6ec 0%, #eef5ef 100%);
 }
 
 .album-shell {
   width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+  display: grid;
+  gap: 12px;
 }
 
 .album-heading {
-  margin-bottom: 14px;
-  padding: 14px 16px 16px;
+  padding: 14px 16px 15px;
   color: #4b3528;
-  background: rgba(255, 255, 255, 0.72);
-  border: 3px solid rgba(103, 64, 38, 0.18);
-  border-radius: 8px;
-  box-shadow: 0 4px 0 rgba(79, 47, 34, 0.18);
+  background: rgba(255, 255, 255, 0.82);
+  border: 2px solid rgba(103, 64, 38, 0.16);
+  border-radius: 10px;
+  box-shadow: 0 3px 0 rgba(79, 47, 34, 0.16);
 }
 
 .album-heading h2,
@@ -1403,11 +1406,12 @@ body.blessing-locked .sprite-parade {
 .album-heading h2 {
   margin: 4px 0 6px;
   color: #8b3e25;
-  font-size: 26px;
+  font-size: 24px;
   line-height: 1.1;
 }
 
-.album-heading > p:last-child {
+.album-note {
+  color: #6d4a39;
   font-size: 14px;
   line-height: 1.5;
   font-weight: 700;
@@ -1417,16 +1421,16 @@ body.blessing-locked .sprite-parade {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   align-items: stretch;
-  gap: 10px;
+  gap: 12px;
 }
 
 .album-shot {
   margin: 0;
   overflow: hidden;
   background: #fff;
-  border: 4px solid #6b3e22;
-  border-radius: 8px;
-  box-shadow: 0 5px 0 #2f1e17, inset 2px 2px 0 rgba(255, 255, 255, 0.35);
+  border: 3px solid #6b3e22;
+  border-radius: 10px;
+  box-shadow: 0 4px 0 #2f1e17, inset 2px 2px 0 rgba(255, 255, 255, 0.35);
 }
 
 .album-shot img {
@@ -1438,20 +1442,15 @@ body.blessing-locked .sprite-parade {
 
 .album-shot--hero {
   grid-row: span 3;
-  min-height: 544px;
+  min-height: 528px;
 }
 
 .album-shot--tall {
-  min-height: 176px;
+  min-height: 168px;
 }
 
 .album-shot--wide {
-  min-height: 176px;
-}
-
-.album-shot--banner {
-  grid-column: 1 / -1;
-  min-height: 180px;
+  min-height: 168px;
 }
 
 .ending-screen {
@@ -1477,21 +1476,29 @@ body.blessing-locked .sprite-parade {
 }
 
 @media (max-width: 420px) {
+  .album-shell {
+    gap: 10px;
+  }
+
+  .album-heading {
+    padding: 13px 14px 14px;
+  }
+
+  .album-heading h2 {
+    font-size: 22px;
+  }
+
   .album-grid {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .album-shot--hero,
   .album-shot--tall,
-  .album-shot--wide,
-  .album-shot--banner {
+  .album-shot--wide {
     grid-column: auto;
     grid-row: auto;
-    min-height: 210px;
-  }
-
-  .album-shot--banner {
-    min-height: 150px;
+    min-height: 204px;
   }
 }
 

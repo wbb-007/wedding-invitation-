@@ -91,6 +91,20 @@ prepareCarIcon();
 updateWeddingCountdown();
 window.setInterval(updateWeddingCountdown, 60 * 60 * 1000);
 
+const warmup = () => warmupImages([
+  './album-01.jpg',
+  './album-02.jpg',
+  './album-03.jpg',
+  './album-04.jpg',
+  './结尾.png',
+]);
+
+if ('requestIdleCallback' in window) {
+  requestIdleCallback(warmup, { timeout: 1200 });
+} else {
+  window.setTimeout(warmup, 1200);
+}
+
 document.querySelectorAll('[data-copy]').forEach((button) => {
   button.addEventListener('click', async () => {
     const text = button.dataset.copy;
@@ -214,6 +228,14 @@ function loadImage(source) {
     const image = new Image();
     image.addEventListener('load', () => resolve(image), { once: true });
     image.addEventListener('error', reject, { once: true });
+    image.src = source;
+  });
+}
+
+function warmupImages(sources) {
+  sources.forEach((source) => {
+    const image = new Image();
+    image.decoding = 'async';
     image.src = source;
   });
 }
