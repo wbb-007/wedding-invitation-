@@ -36,10 +36,9 @@ const musicToggle = document.querySelector('[data-music-toggle]');
 const musicHeart = document.querySelector('[data-music-heart]');
 const spriteParade = document.querySelector('[data-sprite-parade]');
 const weddingCountdown = document.querySelector('[data-wedding-countdown]');
-const countdownDays = document.querySelector('[data-countdown-days]');
+const countdownTime = document.querySelector('[data-countdown-time]');
 
-const WEDDING_DATE = Date.UTC(2026, 9, 3);
-const SHANGHAI_TIME_ZONE = 'Asia/Shanghai';
+const WEDDING_DATE = Date.UTC(2026, 9, 3, 4, 8, 0);
 const SPRITE_SHEET_URL = './sprite.png';
 const CAR_IMAGE_URL = './car.png';
 const SPRITE_GRID_COLUMNS = 3;
@@ -89,7 +88,7 @@ sections.forEach((section) => observer.observe(section));
 prepareSpriteActors();
 prepareCarIcon();
 updateWeddingCountdown();
-window.setInterval(updateWeddingCountdown, 60 * 60 * 1000);
+window.setInterval(updateWeddingCountdown, 1000);
 
 const warmup = () => warmupImages([
   './album-01.jpg',
@@ -158,35 +157,19 @@ function updateMusicState(isPlaying) {
 }
 
 function updateWeddingCountdown() {
-  if (!weddingCountdown || !countdownDays) return;
+  if (!weddingCountdown || !countdownTime) return;
 
-  const today = new Intl.DateTimeFormat('en-CA', {
-    timeZone: SHANGHAI_TIME_ZONE,
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).formatToParts(new Date());
-  const dateParts = Object.fromEntries(today.map(({ type, value }) => [type, value]));
-  const todayUtc = Date.UTC(Number(dateParts.year), Number(dateParts.month) - 1, Number(dateParts.day));
-  const daysRemaining = Math.ceil((WEDDING_DATE - todayUtc) / (24 * 60 * 60 * 1000));
+  const remaining = WEDDING_DATE - Date.now();
+  const isToday = remaining <= 0;
+  const totalSeconds = Math.max(0, Math.floor(remaining / 1000));
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
 
-  if (daysRemaining === 0) {
-    countdownDays.textContent = '今天';
-    weddingCountdown.querySelector('.wedding-countdown__label').textContent = '今天就是婚礼日';
-    weddingCountdown.querySelector('.wedding-countdown__unit').textContent = '';
-    weddingCountdown.classList.add('is-today');
-    return;
-  }
-
-  if (daysRemaining < 0) {
-    countdownDays.textContent = '已到';
-    weddingCountdown.querySelector('.wedding-countdown__label').textContent = '婚礼日已到';
-    weddingCountdown.querySelector('.wedding-countdown__unit').textContent = '';
-    weddingCountdown.classList.add('is-today');
-    return;
-  }
-
-  countdownDays.textContent = String(daysRemaining);
+  countdownTime.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  weddingCountdown.querySelector('.wedding-countdown__label').textContent = isToday ? '今天就是婚礼日' : '距离婚礼还有';
+  weddingCountdown.querySelector('.wedding-countdown__unit').textContent = isToday ? '时分秒' : '时分秒';
+  weddingCountdown.classList.toggle('is-today', isToday);
 }
 
 async function prepareCarIcon() {
