@@ -129,12 +129,13 @@ body.blessing-locked .music-heart-trigger::before {
   background: #9b4e58;
 }
 
-.music-toggle__note {
+.music-toggle__icon {
   display: block;
-  font-family: Georgia, serif;
-  font-size: 28px;
-  line-height: 32px;
-  text-shadow: 2px 2px 0 #3d2518;
+  width: 22px;
+  height: 22px;
+  margin: 0 auto;
+  fill: currentColor;
+  stroke: none;
 }
 
 .music-heart-trigger {
