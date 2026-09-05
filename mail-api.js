@@ -7,7 +7,7 @@ const SMTP_HOST = process.env.SMTP_HOST || 'smtp.partner.outlook.cn';
 const SMTP_PORT = Number(process.env.SMTP_PORT || 587);
 const SMTP_USER = process.env.SMTP_USER || '';
 const SMTP_PASS = process.env.SMTP_PASS || '';
-const MAIL_TO = process.env.MAIL_TO || '390042378@qq.com';
+const MAIL_TO = process.env.MAIL_TO || '465991083@qq.com';
 const MAIL_FROM_NAME = process.env.MAIL_FROM_NAME || '婚礼回执';
 
 if (!SMTP_USER || !SMTP_PASS) {
