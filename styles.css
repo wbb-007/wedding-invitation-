@@ -956,7 +956,7 @@ body.blessing-locked .sprite-parade {
 }
 
 .wedding-countdown strong {
-  min-width: 8ch;
+  min-width: 18ch;
   color: #ffe68b;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 23px;
@@ -1355,28 +1355,74 @@ body.blessing-locked .sprite-parade {
 
 .album-screen {
   justify-content: flex-start;
+  overflow: visible;
   padding-top: max(28px, env(safe-area-inset-top));
   padding-bottom: max(28px, env(safe-area-inset-bottom));
   background:
-    radial-gradient(circle at 14% 12%, rgba(255, 255, 255, 0.68), transparent 34%),
-    linear-gradient(180deg, #fbf6ec 0%, #eef5ef 100%);
+    radial-gradient(circle at 15% 10%, rgba(255, 232, 156, 0.58), transparent 130px),
+    radial-gradient(circle at 88% 28%, rgba(110, 180, 212, 0.36), transparent 145px),
+    linear-gradient(180deg, #87c5d9 0%, #6fbf72 43%, #4f9f58 43%, #34774b 100%);
+}
+
+.album-screen::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 38%;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, transparent 50%, rgba(95, 159, 76, 0.78) 50%) 0 0 / 84px 54px repeat-x,
+    linear-gradient(180deg, rgba(90, 162, 77, 0.98), #294f32);
 }
 
 .album-shell {
   width: 100%;
   max-width: 940px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  padding: 18px 16px 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 245, 205, 0.34), rgba(255, 245, 205, 0.08)),
+    #f2d992;
+  border: 6px solid #6c3f24;
+  border-radius: 16px;
+  box-shadow: inset 0 0 0 4px #c98c4c, 0 10px 0 #301c14, 0 22px 36px rgba(0, 0, 0, 0.26);
   display: grid;
   gap: 12px;
+}
+
+.album-shell::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  pointer-events: none;
+  border: 2px dashed rgba(255, 245, 210, 0.36);
+  border-radius: 10px;
+}
+
+.album-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0 10px, rgba(255, 223, 136, 0.12) 10px 12px, transparent 12px 100%) 0 0 / 24px 24px repeat,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 30% 70%, rgba(0, 0, 0, 0.05));
+  border-radius: 16px;
 }
 
 .album-heading {
   padding: 14px 16px 15px;
   color: #4b3528;
-  background: rgba(255, 255, 255, 0.82);
-  border: 2px solid rgba(103, 64, 38, 0.16);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 55%),
+    #fff0bd;
+  border: 4px solid #714727;
   border-radius: 10px;
-  box-shadow: 0 3px 0 rgba(79, 47, 34, 0.16);
+  box-shadow: inset 3px 3px 0 rgba(255, 255, 255, 0.38), 0 5px 0 #c98c4c;
 }
 
 .album-heading h2,
@@ -1386,32 +1432,65 @@ body.blessing-locked .sprite-parade {
 
 .album-heading h2 {
   margin: 4px 0 6px;
-  color: #8b3e25;
+  color: #7b371c;
   font-size: 24px;
   line-height: 1.1;
 }
 
 .album-note {
-  color: #6d4a39;
+  color: #4f321e;
   font-size: 14px;
   line-height: 1.5;
   font-weight: 700;
 }
 
-.album-grid {
+.album-feature {
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  align-items: stretch;
-  gap: 12px;
+  justify-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: rgba(255, 240, 189, 0.26);
+  border: 3px solid rgba(106, 65, 37, 0.26);
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
 }
 
 .album-shot {
+  position: relative;
   margin: 0;
   overflow: hidden;
-  background: #fff;
-  border: 3px solid #6b3e22;
-  border-radius: 10px;
-  box-shadow: 0 4px 0 #2f1e17, inset 2px 2px 0 rgba(255, 255, 255, 0.35);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 35%),
+    #fff0bd;
+  border: 4px solid #6a4125;
+  border-radius: 12px;
+  box-shadow:
+    inset 3px 3px 0 rgba(255, 255, 255, 0.34),
+    inset -3px -3px 0 rgba(82, 52, 29, 0.16),
+    0 6px 0 rgba(69, 44, 25, 0.42);
+}
+
+.album-shot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0 8px, transparent 8px 16px),
+    linear-gradient(315deg, rgba(255, 228, 162, 0.18) 0 8px, transparent 8px 16px);
+  mix-blend-mode: screen;
+  opacity: 0.45;
+}
+
+.album-shot::after {
+  content: "";
+  position: absolute;
+  inset: auto 8px 8px 8px;
+  height: 6px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(61, 37, 24, 0.22), transparent);
 }
 
 .album-shot img {
@@ -1419,19 +1498,30 @@ body.blessing-locked .sprite-parade {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  position: relative;
+  z-index: 1;
 }
 
-.album-shot--hero {
-  grid-row: span 3;
-  min-height: 528px;
+.album-shot--solo {
+  width: min(100%, 520px);
+  aspect-ratio: 3 / 4;
+  min-height: 0;
 }
 
-.album-shot--tall {
-  min-height: 168px;
-}
-
-.album-shot--wide {
-  min-height: 168px;
+.album-caption {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 8px 14px;
+  color: #7b371c;
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 900;
+  text-align: center;
+  background: rgba(255, 250, 231, 0.84);
+  border: 3px solid #714727;
+  border-radius: 999px;
+  box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.45), 0 4px 0 #c98c4c;
 }
 
 .ending-screen {
@@ -1457,7 +1547,13 @@ body.blessing-locked .sprite-parade {
 }
 
 @media (max-width: 420px) {
+  .album-screen {
+    padding-top: max(24px, env(safe-area-inset-top));
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+
   .album-shell {
+    padding: 14px 12px 14px;
     gap: 10px;
   }
 
@@ -1469,17 +1565,13 @@ body.blessing-locked .sprite-parade {
     font-size: 22px;
   }
 
-  .album-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
+  .album-feature {
+    padding: 10px;
   }
 
-  .album-shot--hero,
-  .album-shot--tall,
-  .album-shot--wide {
-    grid-column: auto;
-    grid-row: auto;
-    min-height: 204px;
+  .album-shot--solo {
+    width: 100%;
+    aspect-ratio: 4 / 5;
   }
 }
 

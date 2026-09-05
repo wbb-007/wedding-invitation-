@@ -201,13 +201,14 @@ function updateWeddingCountdown() {
   const remaining = WEDDING_DATE - Date.now();
   const isToday = remaining <= 0;
   const totalSeconds = Math.max(0, Math.floor(remaining / 1000));
-  const hours = Math.floor(totalSeconds / 3600);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
 
-  countdownTime.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  countdownTime.textContent = `${String(days).padStart(2, '0')}天${String(hours).padStart(2, '0')}小时${String(minutes).padStart(2, '0')}分钟${String(seconds).padStart(2, '0')}秒`;
   weddingCountdown.querySelector('.wedding-countdown__label').textContent = isToday ? '今天就是婚礼日' : '距离婚礼还有';
-  weddingCountdown.querySelector('.wedding-countdown__unit').textContent = '时分秒';
+  weddingCountdown.querySelector('.wedding-countdown__unit').textContent = '倒计时';
   weddingCountdown.classList.toggle('is-today', isToday);
 }
 
