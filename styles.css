@@ -22,17 +22,31 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  height: 100%;
 }
 
 body {
   margin: 0;
+  min-height: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   color: var(--ink);
   background:
     radial-gradient(circle at 10% 10%, rgba(255, 230, 130, 0.24), transparent 24rem),
     linear-gradient(135deg, #183d38 0%, #244c3d 38%, #101d2d 100%);
   font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
   overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 body.blessing-locked {
@@ -55,8 +69,10 @@ body.blessing-locked .music-heart-trigger::before {
 
 .phone-frame {
   position: relative;
-  width: min(100vw, var(--frame-width));
+  width: min(100%, var(--frame-width));
+  min-height: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   margin: 0 auto;
   background: #72bc58;
   box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.06), 0 24px 80px rgba(0, 0, 0, 0.4);
@@ -65,11 +81,15 @@ body.blessing-locked .music-heart-trigger::before {
 
 .screen {
   position: relative;
+  min-height: 100%;
+  min-height: 100vh;
   min-height: 100svh;
+  min-height: 100dvh;
   padding: max(22px, env(safe-area-inset-top)) 18px max(24px, env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: stretch;
   overflow: hidden;
 }
 
@@ -938,8 +958,24 @@ body.blessing-locked .sprite-parade {
   font-weight: 700;
 }
 
+.map-header h2,
+.album-heading h2,
+.tour-heading h2,
+.food-heading h2,
+.letter-card h2,
+.calendar-board h2,
+.travel-card h3,
+.travel-card p,
+.stay-transfer-note p,
+.location-note strong,
+.location-note span {
+  overflow-wrap: anywhere;
+}
+
 .wedding-countdown {
   display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: baseline;
   gap: 4px;
   margin-top: 9px;
@@ -957,7 +993,7 @@ body.blessing-locked .sprite-parade {
 }
 
 .wedding-countdown strong {
-  min-width: 18ch;
+  min-width: 0;
   color: #ffe68b;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 23px;
@@ -1102,6 +1138,7 @@ body.blessing-locked .sprite-parade {
 .map-card {
   position: relative;
   z-index: 2;
+  min-width: 0;
   padding: 20px 16px 18px;
   background: #f6dfaa;
   border: 6px solid #6c3f24;
@@ -1153,8 +1190,10 @@ body.blessing-locked .sprite-parade {
 .map-frame {
   position: relative;
   display: block;
+  width: 100%;
   height: min(42svh, 312px);
   min-height: 250px;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   background: #6ca756;
   border: 5px solid #5b3420;
@@ -1317,14 +1356,19 @@ body.blessing-locked .sprite-parade {
   height: 38px;
   place-items: center;
   color: #fff2bf;
-  font-family: Georgia, serif;
-  font-size: 29px;
-  font-weight: 900;
-  line-height: 1;
   background: #b85a47;
   border: 3px solid #6b3028;
   border-radius: 4px;
   box-shadow: inset 3px 3px 0 #e58b6b, 0 3px 0 #653027;
+  overflow: hidden;
+}
+
+.stay-transfer-note__icon svg {
+  width: 34px;
+  height: 34px;
+  fill: currentColor;
+  shape-rendering: crispEdges;
+  image-rendering: pixelated;
 }
 
 .stay-transfer-note p {
@@ -1384,6 +1428,7 @@ body.blessing-locked .sprite-parade {
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  min-width: 0;
   padding: 18px 16px 18px;
   background:
     linear-gradient(180deg, rgba(255, 245, 205, 0.34), rgba(255, 245, 205, 0.08)),
@@ -1448,6 +1493,7 @@ body.blessing-locked .sprite-parade {
 .album-feature {
   position: relative;
   z-index: 1;
+  min-width: 0;
   display: grid;
   justify-items: center;
   gap: 10px;
@@ -1481,8 +1527,7 @@ body.blessing-locked .sprite-parade {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0 8px, transparent 8px 16px),
     linear-gradient(315deg, rgba(255, 228, 162, 0.18) 0 8px, transparent 8px 16px);
-  mix-blend-mode: screen;
-  opacity: 0.45;
+  opacity: 0.22;
 }
 
 .album-shot::after {
@@ -1535,6 +1580,7 @@ body.blessing-locked .sprite-parade {
 .ending-banner {
   width: min(100%, 430px);
   margin: 0 auto;
+  aspect-ratio: 592 / 321;
   border: 4px solid #3d2518;
   border-radius: 8px;
   overflow: hidden;
@@ -1548,6 +1594,45 @@ body.blessing-locked .sprite-parade {
 }
 
 @media (max-width: 420px) {
+  .screen {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .music-toggle {
+    width: 42px;
+    height: 42px;
+  }
+
+  .music-toggle__icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .map-header h2 {
+    font-size: 20px;
+  }
+
+  .map-frame {
+    height: min(34svh, 260px);
+    aspect-ratio: 4 / 3;
+  }
+
+  .travel-card {
+    grid-template-columns: 52px minmax(0, 1fr);
+    padding: 9px 8px;
+  }
+
+  .travel-icon--car {
+    width: 58px;
+    height: 46px;
+  }
+
+  .travel-icon--transit {
+    width: 68px;
+    height: 46px;
+  }
+
   .album-screen {
     padding-top: max(24px, env(safe-area-inset-top));
     padding-bottom: max(24px, env(safe-area-inset-bottom));
@@ -1573,6 +1658,95 @@ body.blessing-locked .sprite-parade {
   .album-shot--solo {
     width: 100%;
     aspect-ratio: 4 / 5;
+  }
+
+  .ending-banner {
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .map-header {
+    gap: 10px;
+  }
+
+  .map-header h2 {
+    font-size: 18px;
+  }
+
+  .location-note,
+  .stay-transfer-note {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .travel-guide {
+    gap: 10px;
+  }
+
+  .travel-card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .travel-card > div {
+    text-align: left;
+  }
+
+  .travel-icon--car {
+    width: 54px;
+    height: 44px;
+  }
+
+  .travel-icon--transit {
+    width: 64px;
+    height: 44px;
+  }
+
+  .album-heading h2 {
+    font-size: 20px;
+  }
+
+  .album-note {
+    font-size: 13px;
+  }
+
+  .album-caption {
+    font-size: 12px;
+  }
+
+  .wedding-countdown {
+    display: grid;
+    gap: 2px;
+    justify-items: center;
+    padding-inline: 10px;
+  }
+
+  .wedding-countdown strong {
+    font-size: 18px;
+    line-height: 1.08;
+  }
+
+  .wedding-countdown__label,
+  .wedding-countdown__unit {
+    font-size: 10px;
+  }
+
+  .map-card,
+  .album-shell,
+  .calendar-board,
+  .tour-card,
+  .food-card,
+  .letter-card {
+    min-width: 0;
+  }
+
+  .map-header h2,
+  .album-heading h2,
+  .tour-heading h2,
+  .food-heading h2 {
+    word-break: break-word;
   }
 }
 

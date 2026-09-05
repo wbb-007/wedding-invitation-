@@ -3,7 +3,8 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "mail-api": "node mail-api.js"
+    "mail-api": "node mail-api.js",
+    "preview": "node preview-server.js"
   },
   "dependencies": {
     "nodemailer": "^6.9.16"
