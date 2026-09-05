@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --sky-top: #65b7ee;
   --sky-mid: #9edbff;
   --grass: #5f9f4c;
@@ -129,16 +129,11 @@ body.blessing-locked .music-heart-trigger::before {
   background: #9b4e58;
 }
 
-.music-toggle__icon {
+.music-toggle__note {
   display: block;
-  width: 24px;
-  height: 24px;
-  margin: 0 auto;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2.2;
-  stroke-linecap: square;
-  stroke-linejoin: miter;
+  font-family: Georgia, serif;
+  font-size: 28px;
+  line-height: 32px;
   text-shadow: 2px 2px 0 #3d2518;
 }
 
@@ -709,7 +704,7 @@ body.blessing-locked .sprite-parade {
 
 .couple-name-board::before,
 .couple-name-board::after {
-  content: "✦";
+  content: "鉁?;
   position: absolute;
   top: 50%;
   color: #ffe39a;
@@ -1841,7 +1836,7 @@ body.blessing-locked .sprite-parade {
 }
 
 .tour-photo-placeholder::after {
-  content: "替换图片占位";
+  content: "鏇挎崲鍥剧墖鍗犱綅";
   position: absolute;
   right: 10px;
   bottom: 8px;
@@ -2126,7 +2121,7 @@ body.blessing-locked .sprite-parade {
   }
 }
 
-/* 书简页保持舒适阅读宽度，内容超出时由页面自然向下延展 */
+/* 涔︾畝椤典繚鎸佽垝閫傞槄璇诲搴︼紝鍐呭瓒呭嚭鏃剁敱椤甸潰鑷劧鍚戜笅寤跺睍 */
 .letter-screen .letter-card {
   max-height: none;
   padding: 46px 24px 26px;
